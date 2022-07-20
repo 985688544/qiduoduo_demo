@@ -9,6 +9,12 @@ class api {
         data,
       });
     },
+    getUerInfo: () => {
+      return request({
+        url: "/api/getUserInfo",
+        method: "get",
+      });
+    },
   };
 }
 

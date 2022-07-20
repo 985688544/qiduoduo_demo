@@ -64,6 +64,9 @@ export default defineComponent({
       if (values) {
         const res: any = await api.SYS.login(values);
         if (res?.result) {
+          const userRes = await api.SYS.getUerInfo();
+          console.log(userRes, "1122");
+
           const userStore = useUserStoreHook();
           userStore.setToken(res.result.token);
           userStore.setUserInfo(res.result);
@@ -108,11 +111,11 @@ export default defineComponent({
     right: 20rem;
     bottom: 30%;
   }
-  /deep/ .ant-form-item-required {
+  :deep(.ant-form-item-required) {
     color: white !important;
     font-weight: bold;
   }
-  /deep/ .ant-checkbox-wrapper {
+  :deep(.ant-checkbox-wrapper) {
     color: white !important;
     font-weight: bold;
   }
