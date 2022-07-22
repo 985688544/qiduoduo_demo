@@ -2,23 +2,51 @@ import { defineStore } from "pinia";
 import { store } from "/@/stores";
 
 type Nullable<T> = T | null;
+
 interface UserInfo {
-  userID: string;
+  userId: string;
+  menus: Menus[];
+  username: string;
+  realName: string;
+  avatar?: string;
+  desc: string;
+  password?: string;
+  token: string;
+}
+
+interface Menus {
+  label: string;
+  path: string;
 }
 
 interface UserState {
   userInfo: Nullable<UserInfo>;
   token?: string;
+  menus: [];
 }
 
 const useUserStore = defineStore({
+  persist: {
+    key: "user_formmat",
+    storage: window.sessionStorage,
+    beforeRestore: (context) => {
+      // console.log(context);
+    },
+    afterRestore: (context) => {
+      // console.log("After hydration...", context);
+    },
+  },
   id: "app-user",
-  state: (): UserState => ({
-    // user info
-    userInfo: null,
-    // token
-    token: undefined,
-  }),
+  state: (): UserState => {
+    return {
+      // user info
+      userInfo: null,
+      // token
+      token: undefined,
+      menus: [],
+    };
+  },
+
   actions: {
     setUserInfo(info: UserInfo | null) {
       this.userInfo = info;
@@ -29,6 +57,12 @@ const useUserStore = defineStore({
       if (token) {
         sessionStorage.setItem("token", token);
       }
+    },
+    setMenus(menus: Menus[] | null) {
+      this.menus = menus;
+    },
+    getMenus(): Menus[] | null {
+      return this.menus;
     },
     getUserInfo(): UserInfo | null {
       const info = sessionStorage.getItem("userInfo") || "";

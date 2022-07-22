@@ -23,6 +23,20 @@ export function createFakeUserList() {
           value: "super",
         },
       ],
+      menus: [
+        {
+          label: "首页",
+          path: "",
+        },
+        {
+          label: "账户管理",
+          path: "",
+        },
+        {
+          label: "系统管理",
+          path: "",
+        },
+      ],
     },
     {
       userId: "2",

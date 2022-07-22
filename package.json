@@ -21,6 +21,7 @@
     "less-loader": "^11.0.0",
     "mockjs": "^1.1.0",
     "pinia": "^2.0.14",
+    "pinia-plugin-persistedstate": "^1.6.3",
     "qs": "^6.11.0",
     "style-resources-loader": "^1.5.0",
     "vite-plugin-mock": "^2.9.6",
