@@ -1,9 +1,16 @@
 // import { ComponentPublicInstance, FunctionalComponent } from "vue";
 
-declare module "*.ts";
+export declare module "*.ts";
 
-declare module "*.vue" {
+export declare module "*.vue" {
   import { defineComponent } from "vue";
   const Component: ReturnType<typeof defineComponent>;
   export default Component;
+}
+
+export interface Result<T = any> {
+  code: number;
+  type: "success" | "error" | "warning";
+  result: T;
+  message: string;
 }

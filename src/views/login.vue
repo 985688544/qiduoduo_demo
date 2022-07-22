@@ -46,6 +46,7 @@ import { defineComponent, reactive, toRaw } from "vue";
 import { useRouter } from "vue-router";
 import { api } from "../api";
 import { useUserStoreHook } from "../stores/modules/user";
+import { Result } from "/#/global";
 
 interface FormState {
   username: string;
@@ -55,6 +56,8 @@ interface FormState {
 export default defineComponent({
   setup() {
     const router = useRouter();
+    const userStore = useUserStoreHook();
+
     const formState = reactive<FormState>({
       username: "jack",
       password: "redballoon",
@@ -62,20 +65,20 @@ export default defineComponent({
     });
     const onFinish = async (values: any) => {
       if (values) {
-        const res: any = await api.SYS.login(values);
-        if (res?.result) {
-          const userRes = await api.SYS.getUerInfo();
-          console.log(userRes, "1122");
+        const res: Result = await api.SYS.login(values);
 
-          const userStore = useUserStoreHook();
-          userStore.setToken(res.result.token);
-          userStore.setUserInfo(res.result);
+        userStore.setToken(res.result.token);
+
+        if (res.result) {
+          const userRes: Result = await api.SYS.getUerInfo();
+          userStore.setUserInfo(userRes.result);
+          userStore.setMenus(userRes?.result?.menus);
           message.success("登陆成功");
           router.replace("/home");
         } else {
           message.error("登陆失败");
         }
-        console.log(res, "Res");
+        // console.log(res, "Res");
       }
     };
 

@@ -1,5 +1,6 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { message } from "ant-design-vue";
+import { Result } from "/#/global";
 
 const services = axios.create({
   baseURL: process.env.VUE_APP_API_URL,
@@ -9,8 +10,9 @@ const services = axios.create({
 });
 
 services.interceptors.request.use(
-  (config) => {
-    config.headers["token"] = "qjndqkjnyav";
+  (config): AxiosRequestConfig => {
+    config.headers["token"] = sessionStorage.getItem("token") || "";
+    config.headers["authorization"] = sessionStorage.getItem("token") || "";
     return config;
   },
   () => {
@@ -20,9 +22,13 @@ services.interceptors.request.use(
 );
 
 services.interceptors.response.use(
-  (config) => {
-    console.log(config);
+  (config: AxiosResponse<any>) => {
     if (config.status === 200) {
+      if (config && config.data && config.data.code < 0) {
+        message.error(config.data.message);
+        return Promise.reject(config.data.message);
+      }
+
       return Promise.resolve(config.data);
     } else {
       message.error("denlucuowu");
