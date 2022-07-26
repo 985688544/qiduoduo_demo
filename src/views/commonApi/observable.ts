@@ -1,5 +1,9 @@
 import { observable, autorun } from "@formily/reactive";
 
+/**
+ *  总结: 主要用来做数据劫持
+ */
+
 // 创建深劫持deep
 export const obs = observable({
   aa: {

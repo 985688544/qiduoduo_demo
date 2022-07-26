@@ -1,5 +1,7 @@
 import { batch, observable, reaction, autorun } from "@formily/reactive";
 
+// 做类似于watcher，消息订阅模式
+
 export const obs = observable({
   aa: 1,
   bb: 22,

@@ -1,5 +1,8 @@
 import { observable, autorun } from "@formily/reactive";
 
+/**
+ *  总结: 用来做热更新
+ */
 export const val1 = observable({
   value: 134,
 });

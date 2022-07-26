@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, unref } from "vue";
-import { val1 } from "../../components/autorun";
+import { val1 } from "../../commonApi/autorun";
 
 export default defineComponent({
   setup() {

@@ -1,5 +1,9 @@
 import { observable, batch, autorun } from "@formily/reactive";
 
+/**
+ *用来做初始化：类似于created｜ mounted
+ */
+
 const obs = observable({
   aa: 22,
 });

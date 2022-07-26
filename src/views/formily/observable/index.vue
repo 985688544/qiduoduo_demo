@@ -31,7 +31,7 @@ import {
   obsComputed,
   obsRef,
   obsBox,
-} from "../../components/observable";
+} from "../../commonApi/observable";
 
 export default defineComponent({
   setup() {

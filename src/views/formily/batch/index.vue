@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import { dispose } from "../../components/batch";
+import { dispose } from "../../commonApi/batch";
 
 export default defineComponent({
   setup() {
