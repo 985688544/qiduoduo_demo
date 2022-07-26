@@ -7,11 +7,21 @@ export const obs = observable({
 
 // 启用热更新
 const dispatch = autorun(() => {
-  reaction(() => {
-    // 类似watch！ 但是只有数据发生变化触发
-    console.log(obs.aa, "2333");
-    return obs.aa > 0;
-  });
+  reaction(
+    () => {
+      //   console.log(obs.aa, "2333");
+      return obs.aa > 0;
+    }, // tracker: () => T
+    (newV, oldV) => {
+      console.log(newV, "new");
+      console.log(oldV, "oldV");
+    }, // subscriber?: (newValue: T, oldValue: T) => void,
+    {
+      name: "initObs", // 名称
+      fireImmediately: false, //是否第一次默认触发，绕过脏检查
+    }
+  );
+
   batch(() => {
     console.log("数据变化");
   });
