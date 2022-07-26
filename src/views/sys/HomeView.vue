@@ -3,17 +3,10 @@
     <a-layout-sider v-model:collapsed="collapsed" :trigger="null" collapsible>
       <div class="logo" />
       <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
-        <a-menu-item key="1">
-          <user-outlined />
-          <span>nav 1</span>
-        </a-menu-item>
-        <a-menu-item key="2">
-          <video-camera-outlined />
-          <span>nav 2</span>
-        </a-menu-item>
-        <a-menu-item key="3">
-          <upload-outlined />
-          <span>nav 3</span>
+        <a-menu-item v-for="(item, index) in menuOptions" :key="index + 1">
+          <router-link :to="item.path">
+            {{ item.label }}
+          </router-link>
         </a-menu-item>
       </a-menu>
     </a-layout-sider>
@@ -57,28 +50,29 @@
           minHeight: '280px',
         }"
       >
-        Content
+        <router-view></router-view>
       </a-layout-content>
     </a-layout>
   </a-layout>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { computed, defineComponent, ref } from "vue";
 import {
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
+  // UserOutlined,
+  // VideoCameraOutlined,
+  // UploadOutlined,
   MenuUnfoldOutlined,
   MenuFoldOutlined,
   SettingOutlined,
 } from "@ant-design/icons-vue";
 import { useRouter } from "vue-router";
+import { useUserStoreHook } from "/@/stores/modules/user";
 
 export default defineComponent({
   components: {
-    UserOutlined,
-    VideoCameraOutlined,
-    UploadOutlined,
+    // UserOutlined,
+    // VideoCameraOutlined,
+    // UploadOutlined,
     MenuUnfoldOutlined,
     MenuFoldOutlined,
     SettingOutlined,
@@ -86,8 +80,11 @@ export default defineComponent({
 
   setup() {
     const visible = ref<boolean>(false);
+    const useStore = useUserStoreHook();
     const router = useRouter();
+    const menuOptions = computed(() => useStore.getMenus());
 
+    // console.log(useStore.getMenus(), "menuop");
     const hanldeLogout = () => {
       router.push("/login");
     };
@@ -95,7 +92,8 @@ export default defineComponent({
     return {
       visible,
       hanldeLogout,
-      selectedKeys: ref<string[]>(["1"]),
+      menuOptions,
+      selectedKeys: ref<number[]>([1]),
       collapsed: ref<boolean>(false),
     };
   },

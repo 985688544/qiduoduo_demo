@@ -27,6 +27,7 @@ interface UserState {
 
 const useUserStore = defineStore({
   persist: {
+    // 自定义缓存规则
     key: "user_formmat",
     storage: window.sessionStorage,
     beforeRestore: (context) => {

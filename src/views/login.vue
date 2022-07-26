@@ -74,7 +74,7 @@ export default defineComponent({
           userStore.setUserInfo(userRes.result);
           userStore.setMenus(userRes?.result?.menus);
           message.success("登陆成功");
-          router.replace("/home");
+          router.replace("/");
         } else {
           message.error("登陆失败");
         }

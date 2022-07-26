@@ -310,6 +310,11 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
+"@formily/reactive@^2.1.11":
+  version "2.1.11"
+  resolved "https://registry.npmjs.org/@formily/reactive/-/reactive-2.1.11.tgz#51f3c2f749f11c327ce19d968ce230d2b7e79a48"
+  integrity sha512-01PWypF0HVJwyP15ANaavzUzMhP4bjT1SkBu8Nof2PIQeB9aoSnL/8bv7Oqv040ZnEg9zoABnYhnS190HXGcLA==
+
 "@humanwhocodes/config-array@^0.9.2":
   version "0.9.5"
   resolved "https://registry.npmjs.org/@humanwhocodes/config-array/-/config-array-0.9.5.tgz"

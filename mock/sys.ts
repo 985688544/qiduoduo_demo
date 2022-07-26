@@ -26,11 +26,11 @@ export function createFakeUserList() {
       menus: [
         {
           label: "首页",
-          path: "",
+          path: "/dashboard",
         },
         {
           label: "账户管理",
-          path: "",
+          path: "/account",
         },
         {
           label: "系统管理",
