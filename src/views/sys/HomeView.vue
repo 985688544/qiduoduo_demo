@@ -101,7 +101,7 @@ export default defineComponent({
     const useStore = useUserStoreHook();
     const router = useRouter();
     const menuOptions = computed(() => useStore.getMenus());
-    console.log(menuOptions);
+    // console.log(menuOptions);
     // console.log(useStore.getMenus(), "menuop");
     const hanldeLogout = () => {
       router.push("/login");

@@ -9,7 +9,7 @@ const formily: RouteRecordRaw = {
   meta: {
     orderNo: 1,
     icon: "ion:grid-outline",
-    title: "账Formily户",
+    title: "Formily",
   },
   children: [
     {
