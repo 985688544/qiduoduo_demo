@@ -19,6 +19,9 @@ interface Menus {
   path: string;
 }
 
+interface MenusList extends Menus {
+  children?: Menus[];
+}
 interface UserState {
   userInfo: Nullable<UserInfo>;
   token?: string;
@@ -59,10 +62,10 @@ const useUserStore = defineStore({
         sessionStorage.setItem("token", token);
       }
     },
-    setMenus(menus: Menus[] | null) {
+    setMenus(menus: MenusList[] | null) {
       this.menus = menus;
     },
-    getMenus(): Menus[] | null {
+    getMenus(): MenusList[] | null {
       return this.menus;
     },
     getUserInfo(): UserInfo | null {

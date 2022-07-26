@@ -1,4 +1,5 @@
 import { MockMethod } from "vite-plugin-mock";
+import { MenuOptions } from "./Menu";
 import {
   resultError,
   resultSuccess,
@@ -23,20 +24,7 @@ export function createFakeUserList() {
           value: "super",
         },
       ],
-      menus: [
-        {
-          label: "首页",
-          path: "/dashboard",
-        },
-        {
-          label: "账户管理",
-          path: "/account",
-        },
-        {
-          label: "系统管理",
-          path: "",
-        },
-      ],
+      menus: MenuOptions,
     },
     {
       userId: "2",

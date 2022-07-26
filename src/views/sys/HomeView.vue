@@ -1,13 +1,31 @@
 <template>
   <a-layout class="home">
-    <a-layout-sider v-model:collapsed="collapsed" :trigger="null" collapsible>
+    <a-layout-sider
+      v-model:collapsed="collapsed"
+      class=""
+      :trigger="null"
+      collapsible
+    >
       <div class="logo" />
       <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
-        <a-menu-item v-for="(item, index) in menuOptions" :key="index + 1">
-          <router-link :to="item.path">
-            {{ item.label }}
-          </router-link>
-        </a-menu-item>
+        <template v-for="(item, index) in menuOptions">
+          <a-menu-item
+            v-if="!item.children || item?.children.length === 0"
+            :key="index + 1 + ''"
+          >
+            <div @click.stop="handletoPath(item)">{{ item.label }}</div>
+          </a-menu-item>
+          <a-sub-menu v-else :key="'child' + index + 1" :title="item.label">
+            <a-menu-item
+              v-for="(child, idx) in item.children"
+              :key="'' + idx + 1"
+            >
+              <div @click.stop="handletoPath(child)">
+                {{ child.label }}
+              </div>
+            </a-menu-item>
+          </a-sub-menu>
+        </template>
       </a-menu>
     </a-layout-sider>
     <a-layout>
@@ -83,16 +101,20 @@ export default defineComponent({
     const useStore = useUserStoreHook();
     const router = useRouter();
     const menuOptions = computed(() => useStore.getMenus());
-
+    console.log(menuOptions);
     // console.log(useStore.getMenus(), "menuop");
     const hanldeLogout = () => {
       router.push("/login");
+    };
+    const handletoPath = (item) => {
+      router.push(item.path);
     };
 
     return {
       visible,
       hanldeLogout,
       menuOptions,
+      handletoPath,
       selectedKeys: ref<number[]>([1]),
       collapsed: ref<boolean>(false),
     };
@@ -110,7 +132,11 @@ export default defineComponent({
     align-items: center;
     justify-content: space-between;
   }
+  .ant-layout-sider {
+    overflow-y: auto;
+  }
 }
+
 #components-layout-demo-custom-trigger .trigger {
   font-size: 18px;
   line-height: 64px;
