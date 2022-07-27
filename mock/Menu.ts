@@ -82,6 +82,52 @@ export const MenuOptions: MenuOptions[] = [
     ],
   },
   {
+    label: "formily-vue-components",
+    path: "",
+    children: [
+      {
+        label: "field",
+        path: "/formilyVue/field",
+      },
+      {
+        label: "arrayField",
+        path: "/formilyVue/arrayField",
+      },
+      {
+        label: "objectField",
+        path: "/formilyVue/objectField",
+      },
+      {
+        label: "voidField",
+        path: "/formilyVue/voidField",
+      },
+      {
+        label: "schemaField(Markup Schema)",
+        path: "/formilyVue/schemaFieldMarkup",
+      },
+      {
+        label: "schemaField(JSON Schema)",
+        path: "/formilyVue/schemaFieldJson",
+      },
+      {
+        label: "简易递归",
+        path: "/formilyVue/recursionField",
+      },
+      {
+        label: "自增列表递归",
+        path: "/formilyVue/selfRecursionField",
+      },
+      {
+        label: "formProvider",
+        path: "/formilyVue/formProvider",
+      },
+      {
+        label: "formConsumer",
+        path: "/formilyVue/formConsumer",
+      },
+    ],
+  },
+  {
     label: "账户管理",
     path: "/account",
   },
