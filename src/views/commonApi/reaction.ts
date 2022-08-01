@@ -34,5 +34,4 @@ const dispatch = autorun(() => {
 //   console.log(obs.aa + obs.bb, "2333");
 //   return obs.aa + obs.bb;
 // });
-
 dispatch();

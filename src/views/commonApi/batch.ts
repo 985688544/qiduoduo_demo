@@ -13,17 +13,16 @@ batch(() => {
     console.log("绑定注册结束执行？？");
   });
   batch.scope(() => {
-    console.log("1");
-    obs.aa = 3344;
+    console.log("2", obs.aa);
+    obs["aa"] = 1;
+    obs["bb"] = 22233;
+
   });
   batch.scope(() => {
-    console.log("2");
-
-    obs["bb"] = 22233;
+    console.log("2", obs.aa);
+    obs.aa = 3344;
+    console.log("1");
   });
-  batch.bound(() => {
-    obs["bb"] = "高阶绑定";
-  }, console.log);
 });
 
 export const dispose = autorun(() => {
